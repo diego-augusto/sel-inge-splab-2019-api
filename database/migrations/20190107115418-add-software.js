@@ -15,7 +15,7 @@ module.exports = {
 			},
 			type: {
 				allowNull: false,
-				type: Sequelize.ENUM('web', 'moble', 'desktop'),
+				type: Sequelize.ENUM('web', 'mobile', 'desktop'),
 			},
 			createdAt: {
 				allowNull: false,

@@ -9,8 +9,10 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 const userRouter = require('./routers/userRouter')
+const softwareRouter = require('./routers/softwareRouter')
 
 app.use('/users', userRouter)
+app.use('/softwares', softwareRouter)
 
 app.get('/', (req, res) => {
     res.send('Server running...');

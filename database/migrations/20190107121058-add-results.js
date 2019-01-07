@@ -20,6 +20,7 @@ module.exports = {
           model: 'Tests',
           key: 'id',
         },
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
