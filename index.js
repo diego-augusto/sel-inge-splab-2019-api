@@ -11,7 +11,9 @@ app.use(bodyparser.urlencoded({ extended: false }));
 const userRouter = require('./routers/userRouter')
 const softwareRouter = require('./routers/softwareRouter')
 const testRouter = require('./routers/testRouter')
+const authRouter = require('./routers/authRouter');
 
+app.use('/signin', authRouter)
 app.use('/users', userRouter)
 app.use('/softwares', softwareRouter)
 app.use('/tests', testRouter)
