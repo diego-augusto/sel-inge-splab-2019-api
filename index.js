@@ -8,9 +8,11 @@ app.use(cors())
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-const userRouter = require('./routers/userRouter')
-const softwareRouter = require('./routers/softwareRouter')
+const authRouter = require('./routers/authRouter');
+const userRouter = require('./routers/userRouter');
+const softwareRouter = require('./routers/softwareRouter');
 
+app.use('/signin', authRouter)
 app.use('/users', userRouter)
 app.use('/softwares', softwareRouter)
 
