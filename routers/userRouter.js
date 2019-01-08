@@ -1,10 +1,10 @@
 const express = require('express')
 const userController = require('../controllers/userController')
 const router = express.Router()
+const permission = require('../middlewares/permission')
 
 router.get("/:id", userController.get)
-router.get("/", userController.getAll)
-router.post("/", userController.add)
+router.get("/", permission.permit('engineer'), userController.getAll)
 router.put("/:id", userController.update)
 router.delete("/:id", userController.delete)
 

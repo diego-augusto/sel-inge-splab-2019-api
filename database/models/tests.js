@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
 
     const Tests = sequelize.define('Tests', {
         name: { type: DataTypes.STRING },
-        role: DataTypes.ENUM('integration', 'unit', 'functional')
+        type: DataTypes.ENUM('integration', 'unit', 'functional')
     }, { paranoid: true });
 
     Tests.associate = models => {
