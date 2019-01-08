@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 const { People } = require('../database/models');
 
 
-
 Router.use('/', async function(req, res) { 
   const foundUser = await People.findOne({
     where: {
@@ -20,8 +19,8 @@ Router.use('/', async function(req, res) {
     const isValidPassword = bcrypt.compareSync(req.body.password, foundUser.password) 
     if (isValidPassword) {
       const payload = {"id": foundUser.id, "name": foundUser.name, "email": foundUser.email, "role": foundUser.role}
-      const token = jwt.sign(payload, "segredo", {expiresIn: 1800})
-      res.json({data: 'Bearer ' + token})
+      const token = jwt.sign(payload, process.env.SECRET, {expiresIn: 1800})
+      res.json({data: token})
       
     } else {
       res.status(400).json({data: {message: 'Password inválido'}})
