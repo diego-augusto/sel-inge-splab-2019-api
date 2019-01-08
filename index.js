@@ -10,9 +10,11 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 const userRouter = require('./routers/userRouter')
 const softwareRouter = require('./routers/softwareRouter')
+const testRouter = require('./routers/testRouter')
 
 app.use('/users', userRouter)
 app.use('/softwares', softwareRouter)
+app.use('/tests', testRouter)
 
 app.get('/', (req, res) => {
     res.send('Server running...');
