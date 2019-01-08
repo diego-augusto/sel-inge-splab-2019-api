@@ -1,4 +1,5 @@
 const { People } = require('../database/models');
+const bcrypt = require('bcrypt')
 
 exports.getAll = async function (req, res) {
 
@@ -17,10 +18,7 @@ exports.getAll = async function (req, res) {
 }
 
 exports.get = async function (req, res) {
-
     try {
-
-
         const user = await People.findOne({
             where: { id: req.params.id },
             attributes: { exclude: ['password'] }
@@ -33,7 +31,6 @@ exports.get = async function (req, res) {
         }
 
     } catch (error) {
-
         console.log(error)
         res.status(500).json({ data: { message: 'Erro inesperado ao recuperar um usuário' } })
     }
@@ -43,27 +40,20 @@ exports.get = async function (req, res) {
 exports.add = async function (req, res) {
 
     try {
-
-        const username = await People.findOne({ where: { username: req.body.username } })
-
-        if (username) {
-            return res.status(409).json({ data: { message: 'Usuário em uso' } })
+        const tempUser = await People.findOne({ where: { $or : {username: req.body.username, email: req.body.email}  } })
+        
+        if (tempUser) {
+            return res.status(409).json({ data: { message: 'Usuário já existe' } })
         }
 
-        const email = await People.findOne({ where: { email: req.body.email } })
-
-        if (email) {
-            return res.status(409).json({ data: { message: 'E-mail em uso' } })
-        }
-
+        const salt = bcrypt.genSaltSync()
+        const hash = bcrypt.hashSync(req.body.password, salt)
+        req.body.password = hash
         const user = await People.create(req.body);
-
         res.status(201).json({ data: { message: "Usuário criado com sucesso com id: " + user.id } });
 
     } catch (error) {
-
         console.log(error)
-
         res.status(500).json({ data: { message: 'Erro inesperado ao criar um usuário' } })
     }
 }
@@ -71,13 +61,10 @@ exports.add = async function (req, res) {
 exports.update = async function (req, res) {
 
     try {
-
         const username = await People.findOne({ where: { username: req.body.username } })
-
         if (username) {
             return res.status(409).json({ data: { message: 'Usuário em uso' } })
         }
-
         const email = await People.findOne({ where: { email: req.body.email } })
 
         if (email) {
