@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Tests.associate = models => {
         Tests.belongsTo(models.Softwares, { foreignKey: 'softwareId' });
+        Tests.belongsTo(models.People, { foreignKey: 'createdBy' });
     };
 
     return Tests;

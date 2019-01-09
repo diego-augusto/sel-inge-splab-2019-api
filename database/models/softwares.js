@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     }, { paranoid: true });
 
     Softwares.associate = models => {
-
         Softwares.hasMany(models.Tests, { foreignKey: 'softwareId', as: 'tests' });
+        Softwares.belongsTo(models.People, { foreignKey: 'createdBy' });
     }
 
     return Softwares;
