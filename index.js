@@ -14,6 +14,7 @@ const userRouter = require('./routers/userRouter')
 const softwareRouter = require('./routers/softwareRouter')
 const testRouter = require('./routers/testRouter')
 const authRouter = require('./routers/authRouter');
+const resultRouter = require('./routers/resultRouter');
 const signupRouter = require('./routers/signupRouter');
 const authorizeMiddleware = require('./middlewares/authorize')
 
@@ -25,6 +26,7 @@ app.use(authorizeMiddleware.authorize)
 app.use('/users', userRouter)
 app.use('/softwares', softwareRouter)
 app.use('/tests', testRouter)
+app.use('/results', resultRouter)
 
 app.get('/', (req, res) => {
     res.send('Server running...');

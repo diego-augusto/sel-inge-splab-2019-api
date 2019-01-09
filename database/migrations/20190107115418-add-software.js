@@ -17,6 +17,15 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.ENUM('web', 'mobile', 'desktop'),
 			},
+			createdBy: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				references: {
+					model: 'People',
+					key: 'id',
+				},
+				onDelete: 'CASCADE'
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,

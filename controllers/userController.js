@@ -10,9 +10,6 @@ exports.getAll = async function (req, res) {
         });
         res.status(200).json({ data: users })
     } catch (error) {
-
-        console.log(error)
-
         res.status(500).json({ data: { message: 'Erro inesperado ao recuperar usuários' } })
     }
 }
@@ -31,7 +28,6 @@ exports.get = async function (req, res) {
         }
 
     } catch (error) {
-        console.log(error)
         res.status(500).json({ data: { message: 'Erro inesperado ao recuperar um usuário' } })
     }
 }
@@ -41,11 +37,9 @@ exports.add = async function (req, res) {
 
     try {
         const tempUser = await People.findOne({ where: { $or : {username: req.body.username, email: req.body.email}  } })
-        
         if (tempUser) {
             return res.status(409).json({ data: { message: 'Usuário já existe' } })
         }
-
         const salt = bcrypt.genSaltSync()
         const hash = bcrypt.hashSync(req.body.password, salt)
         req.body.password = hash
@@ -53,7 +47,6 @@ exports.add = async function (req, res) {
         res.status(201).json({ data: { message: "Usuário criado com sucesso com id: " + user.id } });
 
     } catch (error) {
-        console.log(error)
         res.status(500).json({ data: { message: 'Erro inesperado ao criar um usuário' } })
     }
 }
