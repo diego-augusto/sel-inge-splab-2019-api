@@ -18,6 +18,10 @@ const resultRouter = require('./routers/resultRouter');
 const signupRouter = require('./routers/signupRouter');
 const authorizeMiddleware = require('./middlewares/authorize')
 
+app.get('/', (req, res) => {
+    res.send('Server running...');
+});
+
 app.use('/signin', authRouter)
 app.use('/signup', signupRouter)
 
@@ -28,9 +32,6 @@ app.use('/softwares', softwareRouter)
 app.use('/tests', testRouter)
 app.use('/results', resultRouter)
 
-app.get('/', (req, res) => {
-    res.send('Server running...');
-});
 
 const port = process.env.PORT
 
