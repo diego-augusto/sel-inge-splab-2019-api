@@ -1,0 +1,831 @@
+{
+	"info": {
+		"_postman_id": "3f8b358d-6338-4eae-8351-f6f0e3fadaeb",
+		"name": "Sel-Inge-Splab-2019",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "POST /signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Moura\",\n\t\"username\" : \"moura\",\n\t\"email\" : \"moura@email.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"engineer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1aded043-dd3f-4c17-a59a-68858f69954c",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.data);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"moura\",\n\t\"password\" : \"1234\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL /users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /users/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /users/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"engineer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /users/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"engineer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Software",
+			"item": [
+				{
+					"name": "POST /softwares",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Tcom 5s\",\n\t\"type\" : \"desktop\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL /softwares",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /softwares/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /softwares/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\" : \"web\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /softwares/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"engineer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "POST /tests",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Tcom\",\n\t\"type\" : \"unit\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares/8/tests",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares",
+								"8",
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL /tests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/tests",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /tests/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/tests/16",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET softwares/:softwareId/tests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/softwares/8/tests",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"softwares",
+								"8",
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /tests/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\" : \"functional\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/tests/16",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /tests/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"engineer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/tests/17",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests",
+								"17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Results",
+			"item": [
+				{
+					"name": "POST /tests/:id/results",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"result\" : true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/tests/17/results",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests",
+								"17",
+								"results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL /results",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/results",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL /tests/:id/results",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/tests/17/results",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests",
+								"17",
+								"results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /results/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/results/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"results",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /results/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"result\" : false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/results/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"results",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /results/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Diego Augusto\",\n\t\"username\" : \"diego\",\n\t\"email\" : \"daugustomoura@gmail.com\",\n\t\"password\" : \"1234\",\n\t\"role\" : \"engineer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/results/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"results",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
